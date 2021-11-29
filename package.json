@@ -1,0 +1,23 @@
+{
+  "name": "coding_eval_1_unit_4",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/salavisushant/Coding_eval_1_unit_4.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/salavisushant/Coding_eval_1_unit_4/issues"
+  },
+  "homepage": "https://github.com/salavisushant/Coding_eval_1_unit_4#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^6.0.13"
+  }
+}
