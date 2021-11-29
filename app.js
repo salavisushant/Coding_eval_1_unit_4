@@ -24,7 +24,7 @@ const Jobs = mongoose.model('job',jobSchema);
 
 //CRUD Operation for jobSchema -----------> 
 
-app.post("/job",async(req, res)=>{
+app.post("",async(req, res)=>{
     try{
         const job = await Jobs.create(req.body);
         return res.status(201).send(job);
@@ -33,7 +33,7 @@ app.post("/job",async(req, res)=>{
     }
 })
 
-app.get("/j",async(req, res)=>{
+app.get("/",async(req, res)=>{
     try{
         const job = await Jobs.find().lean().exec();
         return res.status(201).send(job);
@@ -42,18 +42,16 @@ app.get("/j",async(req, res)=>{
     }
 })
 
-app.get("/id",async(req, res)=>{
+app.get("/:ski",async(req, res)=>{
     try{
-        if(req.params.id=="js"){
-        const skills_job = await Jobs.find().sort({skills:-1}).lean().exec();
+        const skills_job = await Jobs.find({skills:{$eq:req.params.ski}}).lean().exec();
         return res.status(201).send(skills_job);
-        }
     }catch(e){
         return res.status(500).json({message:e.message,status:"Failed"});
     }
 })
 
-app.get("/work",async(req, res)=>{
+app.get("/:work",async(req, res)=>{
     try{
         const job = await Jobs.find({"work_type":{$eq:req.params.work}}).lean().exec();
         return res.status(201).send(job);
@@ -63,9 +61,9 @@ app.get("/work",async(req, res)=>{
 })
 
 
-app.get("/job/:period",async(req, res)=>{
+app.get("/:period",async(req, res)=>{
     try{
-        const job_period = await Jobs.find({notice_period:{$eq:req.params.period}}).lean().exec();
+        const job_period = await Jobs.find({notice_period:{$eq:req.params.period}})
         return res.status(201).send(job_period);
     }catch(e){
         return res.status(500).json({message:e.message,status:"Failed"});
@@ -97,7 +95,7 @@ app.post("/company",async(req, res)=>{
     }
 })
 
-app.get("/",async(req, res)=>{
+app.get("/get",async(req, res)=>{
     try{
         const company_details = await Company.find().lean().exec();
         return res.status(201).send(company_details);
